@@ -23,4 +23,3 @@
 #define ff first
 #define ss second
 #define pll pair<ll,ll>
-#define cd complex<double> 
