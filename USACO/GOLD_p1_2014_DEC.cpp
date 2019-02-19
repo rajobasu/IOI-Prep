@@ -1,3 +1,8 @@
+/*
+SOLUTION: try all mask, and for each mask, try to place a cow at the bottom and recurse on the remaining mask
+COMPLEXITY: n2^n
+*/
+
 #include <iostream>
 #include <vector>
 #include <set>
