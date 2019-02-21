@@ -1,6 +1,8 @@
 /*
-SOLUTION: Select all upper and lower boundaries, and do a linear scan for the left and right boundaries.
-COMPLEXITY: nlogn + n^3
+SOLUTION: optimize usual DP with a segtree for each color where index is column number. 
+COMPLEXITY: nlogn
+
+PS: TRY USING BIT for full points
 */
 
 
