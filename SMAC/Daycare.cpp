@@ -1,4 +1,6 @@
 /*
+https://wcipeg.com/problem/smac081p4
+
 SOLUTION: process from right to left. when we get a value, we try to distribute it efficiently.
  If we distribute one by one, it is too slow for the full solution. What we do is, we assume the blocks are
  already arranged in ascending order. so obviously we would fill in this order. Now, we only keep distinct block
