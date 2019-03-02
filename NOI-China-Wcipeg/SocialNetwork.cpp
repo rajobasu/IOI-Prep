@@ -1,6 +1,6 @@
 /*
 SOLUTION: modified floyd warshall. code is self explainatory
-COMPLEXITY: n^3
+COMPLEXITY: O(n^3)
 */
 
 #include <iostream>
