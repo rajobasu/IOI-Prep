@@ -1,5 +1,6 @@
 /*
 SOLUTION: same as plat p3 2016
+COMPLEXITY: O(100*n)
 */
 
 #include <iostream>
