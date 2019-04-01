@@ -1,0 +1,3 @@
+/*
+SOLUTION : Basic persistance + eulertour
+*/
