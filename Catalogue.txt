@@ -12,4 +12,7 @@
 12) think about euler tours of a tree, including path euler tour. We can skip subtrees in the path version by marking first entry using + values and second using - ( or wtvr the inverse is, if present). That way, if entire subtree is skipped, stuff cancels out.
 13) treedp can be sometimes simplified using HLD. 
 14) try using Mo's, either the normal variant or the euler tour variant. 
- 
+15) when cycles are in graph, try in terms of euler tour. Also think what happens when
+two cycles intersect.
+16) think offline preprocessing with prefix sums. even 2D
+17) 
