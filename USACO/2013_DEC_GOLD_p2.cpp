@@ -1,0 +1,3 @@
+/*
+SOLUTION :Easy segment tree
+*/
