@@ -17,3 +17,4 @@ two cycles intersect.
 16) think offline preprocessing with prefix sums. even 2D
 17) while doing small to large, especially when using segment trees(like while counting inversions), to make complexity nlogn instead of nlognlogn, traverse the segment trees simultaneously, but primarily focus on the smaller segmenttree. when there is a NULL pointer in the smaller segtree but a node in the larger segtree, just attach a reference to that node in the new segment tree, while otherwise merging the results of both segtrees in the old segtree.
 18) considering bitmask problems, try to think of subproblems also in the form of bitmasks, as we already have a 2^k term in out complexity, so it cant get worse anyway.
+19) In graphs, if some parameter is small, convert graph to DAG by incorporating the small param into the node label for the new graph. Then try do DP.
