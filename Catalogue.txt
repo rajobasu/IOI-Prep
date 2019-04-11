@@ -3,7 +3,7 @@
 3) knapsack with duplicates is solvable by breaking k = 1+2+4+8+...
 4) Try applying different types of sqrt decomp. By nodes, or by queries. 
 5) What we can do is perform some queries, and then revert them, and see what changes we incurred.This could be optimal in several cases. like dynamic MST. 
-6) Apply exchange argument for greedy algorithms. Mainly, find the sorting parameter. what can help is checking only with N= 2 to find a sort parameter.
+6) Apply exchange argument for greedy algorithms. Mainly, find the sorting parameter. what can help is checking only with N = 2 to find a sort parameter.
 7) try to apply binsrch to determine the answer wherever possible. 
 8) if its a tree problem, think about centroid decomp first. If during that decomp, you need to access information abt paths that go into the domain of a parallel centroid, then it means ur basically moving up in the centroid tree. Then ofcourse think in relation with a centroid tree. 
 9) think about LCA based merging. also used s2L while merging always when possible. 
@@ -12,11 +12,13 @@
 12) think about euler tours of a tree, including path euler tour. We can skip subtrees in the path version by marking first entry using + values and second using - ( or wtvr the inverse is, if present). That way, if entire subtree is skipped, stuff cancels out.
 13) treedp can be sometimes simplified using HLD. 
 14) try using Mo's, either the normal variant or the euler tour variant. 
-15) when cycles are in graph, try in terms of euler tour. Also think what happens when
-two cycles intersect.
+15) when cycles are in graph, try in terms of euler tour. Also think what happens when two cycles intersect.
 16) think offline preprocessing with prefix sums. even 2D
 17) while doing small to large, especially when using segment trees(like while counting inversions), to make complexity nlogn instead of nlognlogn, traverse the segment trees simultaneously, but primarily focus on the smaller segmenttree. when there is a NULL pointer in the smaller segtree but a node in the larger segtree, just attach a reference to that node in the new segment tree, while otherwise merging the results of both segtrees in the old segtree.
 18) considering bitmask problems, try to think of subproblems also in the form of bitmasks, as we already have a 2^k term in out complexity, so it cant get worse anyway.
 19) In graphs, if some parameter is small, convert graph to DAG by incorporating the small param into the node label for the new graph. Then try do DP.
 20) We can try to reduce problems to geometry problems. For EG : if we have to maximize some function, we can write it as slope. for eg, let a/b and c/d be chosen to maximize a+b/c+d. we can write this as slope between 2 points and reduce it to hull problems.
+21) When finding shortest odd/even length path from a source to target vertex, modifying shortest path algorithms only give the shortest walk, and not shortest path. 
+22) Note that .size() does not return an int, so convert it to an int
+23) while computing maxflow, if do several maxflows, and in each iteration we increase capacities by 1, the comlexity does not change by much, so its worth implementing.
 
