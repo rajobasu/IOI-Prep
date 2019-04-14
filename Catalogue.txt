@@ -22,4 +22,4 @@
 22) Note that .size() does not return an int, so convert it to an int
 23) while computing maxflow, if do several maxflows, and in each iteration we increase capacities by 1, the comlexity does not change by much, so its worth implementing.
 24) number of triangles in a graph is O(Msqrt(M))
-
+25) 2*(a&b) + a^b = a+b
