@@ -23,3 +23,4 @@
 23) while computing maxflow, if do several maxflows, and in each iteration we increase capacities by 1, the comlexity does not change by much, so its worth implementing.
 24) number of triangles in a graph is O(Msqrt(M))
 25) 2*(a&b) + a^b = a+b
+26) Counting problems, like number of different arrangements of stuff can be sometimes treated as counting number of topological sorts in a graph.
