@@ -26,4 +26,4 @@
 26) Counting problems, like number of different arrangements of stuff can be sometimes treated as counting number of topological sorts in a graph.
 27) HLD can be used for proving amortizations in trees as well, considering that each path has atmost logn nodes, and that for updates, each chain gets modified only O(queries) number of times.
 28) When in each query some information is given so that the sum of all those informations if O(N), try using sqrt decomp on that.
-29) TRY SQRT DECOMPOSITION EVERYWHERE
+29) TRY SQRT DECOMPOSITION EVERYWHERE.LITERALLY EVERYWHERE.
