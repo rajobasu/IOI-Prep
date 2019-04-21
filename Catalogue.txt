@@ -28,3 +28,4 @@
 28) When in each query some information is given so that the sum of all those informations if O(N), try using sqrt decomp on that.
 29) TRY SQRT DECOMPOSITION EVERYWHERE.LITERALLY EVERYWHERE.
 30) greedily choosing numbers in array with atleast 1 separation can be seen as manipulating augmenting paths in a bipartite graphs, and can be maintained in a heap.
+31) In queries regarding ranges, we can maybe try to process the begining and ending as events while processing offline. 
