@@ -29,3 +29,5 @@
 29) TRY SQRT DECOMPOSITION EVERYWHERE.LITERALLY EVERYWHERE.
 30) greedily choosing numbers in array with atleast 1 separation can be seen as manipulating augmenting paths in a bipartite graphs, and can be maintained in a heap.
 31) In queries regarding ranges, we can maybe try to process the begining and ending as events while processing offline. 
+32) Constraint equations can be solved via bellman ford. 
+33) while doing treaps and lazy, note that its not exactly like segtree. so like the lazy tags might need to be pushed two steps sometimes to calculating the sum at a certain level, because here, we can recalculate stuff even though lower things have not been pushed due the the split and merge functions. Possible alternative might be to handle size and lazy stuff differently. 
