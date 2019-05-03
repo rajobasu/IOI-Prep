@@ -34,3 +34,5 @@
 34) Exact K-edge shortest path can be solved using bellman ford. We just need to do it in a dp style.
 35) we can use the fact that in a tree number of vertices - number of edges = 1. Thus it can be extended to a forest as well. This can be useful in case we are keeping count of the number of trees somewhere.
 36) Try to see if a graph can be formed for which euler tour gives then answer
+37) while expanding in segtree node, the normal pointer which is passed into the update/query function needs to be reference variable as well, and not just in the expand function.
+38) Grid can be viewed as a bipartite graph with rows and coulumns as nodes and the (i,j) pair with the a[i][j] as the edge. This can also be done in a graph, where the x and y axis itself can be nodes, and edges are basically the points (i,j)
