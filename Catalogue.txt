@@ -30,9 +30,10 @@
 30) greedily choosing numbers in array with atleast 1 separation can be seen as manipulating augmenting paths in a bipartite graphs, and can be maintained in a heap.
 31) In queries regarding ranges, we can maybe try to process the begining and ending as events while processing offline. 
 32) Constraint equations can be solved via bellman ford. 
-33) while doing treaps and lazy, note that its not exactly like segtree. so like the lazy tags might need to be pushed two steps sometimes to calculating the sum at a certain level, because here, we can recalculate stuff even though lower things have not been pushed due the the split and merge functions. Possible alternative might be to handle size and lazy stuff differently. 
+33) while doing treaps and lazy, note that its not exactly like segtree. so like the lazy tags might need to be pushed two steps sometimes to calculating the sum at a certain level, because here, we can recalculate stuff even though lower things have not been pushed due the the split and merge functions. 
 34) Exact K-edge shortest path can be solved using bellman ford. We just need to do it in a dp style.
-35) we can use the fact that in a tree number of vertices - number of edges = 1. Thus it can be extended to a forest as well. This can be useful in case we are keeping count of the number of trees somewhere.
+35) we can use the fact that in a tree number of vertices - number of edges = 1. Thus it can be extended to a forest as well. This can be useful in case we are keeping count of the number of trees somewhere. Also can be used to find the number of connected components.
 36) Try to see if a graph can be formed for which euler tour gives then answer
 37) while expanding in segtree node, the normal pointer which is passed into the update/query function needs to be reference variable as well, and not just in the expand function.
 38) Grid can be viewed as a bipartite graph with rows and coulumns as nodes and the (i,j) pair with the a[i][j] as the edge. This can also be done in a graph, where the x and y axis itself can be nodes, and edges are basically the points (i,j)
+39) x^k can also be represented as (1+1+1....+1) * (1+1+1+1 ... +1) * ... (..) which means basically number of order tuples from each of the sets in the brackets, which can be calculated with a dp
