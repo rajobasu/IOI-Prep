@@ -37,3 +37,5 @@
 37) while expanding in segtree node, the normal pointer which is passed into the update/query function needs to be reference variable as well, and not just in the expand function.
 38) Grid can be viewed as a bipartite graph with rows and coulumns as nodes and the (i,j) pair with the a[i][j] as the edge. This can also be done in a graph, where the x and y axis itself can be nodes, and edges are basically the points (i,j)
 39) x^k can also be represented as (1+1+1....+1) * (1+1+1+1 ... +1) * ... (..) which means basically number of order tuples from each of the sets in the brackets, which can be calculated with a dp
+40) cache friendliness can make even
+ 1e10 basic operations run really fast
