@@ -33,31 +33,20 @@ int nodeVal[MAXN];
 int edgesVal[MAXN];
 bool marked[MAXN];
 vector<ii> g[MAXN];
-
 stack<ii> st;
 bool vis[MAXN];
 vector<ii> cycle;
 bool done = 0;
 void markCycle(int node,int p,int pe){
-	st.push({node,pe});
-	
 	if(vis[node]){
 		if(done)return;
 		done = 1;
-		bool got = 0;
-	
 		while(!st.empty()){
-
 			auto e = st.top();st.pop();
-			//marked[e.ff] = 1;
-			if(e.ff == node){
-				if(got)break;
-				got = 1;
-				
-			}
 			cycle.pb(e);
 		}
 	}else{
+		st.push({node,pe});
 		vis[node] = 1;
 		for(auto e:g[node]){
 			if(e.ff != p){
@@ -122,6 +111,7 @@ int main(){
 				sum += nodeVal[e.ff]*x;
 				x *= -1;
 			}
+
 			edgesVal[cycle.back().ss] = sum/2;
 			sum /= 2;
 			nodeVal[cycle.back().ff] -= sum;
