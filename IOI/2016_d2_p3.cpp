@@ -7,15 +7,7 @@
 #include <stdio.h>
 #include <cmath>
 #include <queue>
-//#include <string>
-//#include <map>
-//#include <complex>
-//#include <chrono>
-//#include <random>
-//#include <stack>
-//#include <set>
-//#include <fstream>
- 
+
 #define FOR(i,n) for(int i = 0;i < n; i++)
 #define FORE(i,a,b) for(int i = a; i <= b ; i++)
 #define ss second
