@@ -29,15 +29,10 @@
 #define pld pair<ld,ld>
 #define iii pair<ii,int>
 
-
-
-
 using namespace std;
 
 const int INF = 1e7+10;
 const int MAXN = 100*100*10+10;
-
-
 
 struct Segtree1{
 	int st[4*MAXN];
@@ -96,20 +91,14 @@ struct PersSegTreeMin{
 	};
 	vector<Node*> heads;
 	inline void expand(Node* node){
-		//cout << "fg " << node << endl;
 		if(node->left == NULL)node->left = new Node(NULL,NULL,INF);
-		//cout << "mehh" << endl;
 		if(node->right == NULL)node->right = new Node(NULL,NULL,INF);
 	}
 	PersSegTreeMin(){
 		heads.pb(new Node(NULL,NULL,INF));
-		//cout << heads[0] << endl;
 	}
 	Node* updat_e(Node* node,int ss,int se,int i,int val){
-		//cout <<"d" << endl; 
-		//cout << node << endl;
 		expand(node);
-		//cout << "d" << endl;
 		if(i > se or i < ss)return node;
 		if(ss == se){
 			return new Node(NULL,NULL,min(node->val,val));
@@ -120,7 +109,6 @@ struct PersSegTreeMin{
 		return new Node(l,r,min(l->val,r->val));
 	}
 	int get(Node* node,int ss,int se,int l,int r){
-		//cout << "ds" << endl;
 		if(l > se or r < ss)return INF;
 		if(node == NULL)return INF;
 		if(l <= ss and se <= r)return node->val;
@@ -129,30 +117,18 @@ struct PersSegTreeMin{
 	}
 
 	void update(int lft,int rgt,int tm){
-		//cout << "hi" << endl;
-		//cout << heads[0] << endl;
-		//cout << heads.size() << " " << lft << endl;
-		//cout << lft << " " << rgt << " " << tm << endl;
 		while(1){
-			//cout << "dd" << endl;
 			int x = heads.size();
-			//cout << "duh" << endl;
 			if(x >= lft)break;
 			Node* s = heads.back();
-
-			//cout << "ok" << endl;
 			heads.pb(s);
 		}
-		//cout << heads[0] << endl;
 		if(heads.size() == lft+1){
-		//	cout << heads[lft] << endl;
-		//	cout << heads[0] << endl;
 			Node* e = updat_e(heads[lft],0,MAXN,rgt,tm);
 			heads[lft] = e;
 		}else{
 			heads.pb(updat_e(heads[lft-1],0,MAXN,rgt,tm));
 		}
-		//cout << "meh" << endl;
 	}
 
 	int query(int vers,int lft){
@@ -177,20 +153,14 @@ struct PersSegTreeSum{
 	};
 	vector<Node*> heads;
 	inline void expand(Node* node){
-		//cout << "fg " << node << endl;
 		if(node->left == NULL)node->left = new Node(NULL,NULL,0);
-		//cout << "mehh" << endl;
 		if(node->right == NULL)node->right = new Node(NULL,NULL,0);
 	}
 	PersSegTreeSum(){
 		heads.pb(new Node(NULL,NULL,0));
-		//cout << heads[0] << endl;
 	}
 	Node* updat_e(Node* node,int ss,int se,int i,int val){
-		//cout <<"d" << endl; 
-		//cout << node << endl;
 		expand(node);
-		//cout << "d" << endl;
 		if(i > se or i < ss)return node;
 		if(ss == se){
 			return new Node(NULL,NULL,node->val+val);
@@ -201,7 +171,6 @@ struct PersSegTreeSum{
 		return new Node(l,r,l->val+r->val);
 	}
 	int get(Node* node,int ss,int se,int l,int r){
-		//cout << "ds" << endl;
 		if(l > se or r < ss)return 0;
 		if(node == NULL)return 0;
 		if(l <= ss and se <= r)return node->val;
@@ -210,30 +179,18 @@ struct PersSegTreeSum{
 	}
 
 	void update(int lft,int rgt,int tm){
-		//cout << "hi" << endl;
-		//cout << heads[0] << endl;
-		//cout << heads.size() << " " << lft << endl;
-		//cout << lft << " " << rgt << " " << tm << endl;
 		while(1){
-			//cout << "dd" << endl;
 			int x = heads.size();
-			//cout << "duh" << endl;
 			if(x >= lft)break;
 			Node* s = heads.back();
-
-			//cout << "ok" << endl;
 			heads.pb(s);
 		}
-		//cout << heads[0] << endl;
 		if(heads.size() == lft+1){
-		//	cout << heads[lft] << endl;
-		//	cout << heads[0] << endl;
 			Node* e = updat_e(heads[lft],0,MAXN,rgt,tm);
 			heads[lft] = e;
 		}else{
 			heads.pb(updat_e(heads[lft-1],0,MAXN,rgt,tm));
 		}
-		//cout << "meh" << endl;
 	}
 
 	int query(int vers,int l,int r){
@@ -245,11 +202,6 @@ struct PersSegTreeSum{
 		}
 	}
 };	
-
-
-
-
-
 bool elimArray[MAXN];   //means after the ith cell, elimArray[i] had been eliminated.
 vector<ii> modifRange;
 int prevBest[MAXN];
@@ -334,24 +286,9 @@ int GetBestPosition(int n,int c,int r,int* arr,int* ss,int* ee){
 		if(lst>0){
 			int a = psts1.query(lst-1,i+1,MAXN-3);
 			int b = psts2.query(lst-1,0,i-1);
-			//cout << a << " " << b << endl;
 			sum = a+b;
 		}
 		int hit2 = lst - sum;
-		//lst--;
-		//cout << i << " " << lst << endl;
-		/*
-		int xx = -1;
-		for(auto e : modifRange){
-			//break;
-			xx++;
-			if(e.ss < i or e.ff > i)continue;
-			if(xx == lst){
-				break;
-			}
-			hit++;
-		}*/
-		//cout << i << " " << hit2 <<  " " << hit << " " << lst << endl;
 		if(hit2 > mx){
 			mx = hit2;
 			bestp = i;
