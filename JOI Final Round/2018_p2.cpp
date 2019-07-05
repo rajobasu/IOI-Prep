@@ -32,37 +32,48 @@
 
 using namespace std;
 
-const int INF = 1e9;
-const int MAXN = 400+5;
+const int INF = 4e6;
+const int MAXN = 3001;
 const int MAXK = 100+10;
+
+int n,m;
+int dp[MAXN][MAXN][3];// 0-> none taken, 1->to the right taken,2 = to the bottom taken.
+string grid[MAXN];
+
+inline bool isRpos(int x,int y){
+	if(y+2 >= m)return 0;
+	return grid[x][y] == 'R' and grid[x][y+1] == 'G' and grid[x][y+2] == 'W';
+}
+inline bool isBpos(int x,int y){
+	if(x+2 >= n)return 0;
+	return grid[x][y] == 'R' and grid[x+1][y] == 'G' and grid[x+2][y] == 'W';
+}
 
 int main(){
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-	int n;
-	cin >> n;
-	vv<pll> all;
-	FOR(i,n){
-		ll a,b;
-		cin >> a >> b;
-		all.pb({a,b});
-	}
-	sort(all.begin(), all.end());
-	vv<ll> pref;
-	for(auto e : all){
-		if(pref.empty())pref.pb(e.ss);
-		else pref.pb(pref.back() + e.ss);
-	}
-	set<ll> st;
+	
+	cin >> n >> m;
+	FOR(i,n)cin >> grid[i];
+	FOR(diagonal,2*n-1){
+		FOR(column,diagonal+1){
+			int row = diagonal - column;
+			if(row == n-1){
+				dp[row][column][0] = 0;
+				dp[row][column][1] = (isRpos(row,column))?1:-INF;
+				dp[row][column][2] = -INF;
+			}else if(row == n-2){
+				dp[row][column][0] = //max(0,dp[row+1][column];
+				dp[row][column][1] = (isRpos(row,column))?1:-INF;
+				dp[row][column][2] = -INF;
+			}else if(row == n-3){
+				dp[row][column][0] = 0;
+				dp[row][column][1] = (isRpos(row,column))?1:-INF;
+				dp[row][column][2] = (isBpos(row,column))?1:-INF;
+			}
 
-	ll mx = -1e18;
-	for(auto e : all)mx = max(mx,e.ss);
-	int ptr = -1;
-	for(auto e : all){
-		st.insert(((ptr > -1)?pref[ptr]:0) - e.ff);
-		mx = max(mx,pref[++ptr] - e.ff - (*st.begin()));
-		
+		}
 	}
-	cout << mx << endl;
+
 	return 0;
 }

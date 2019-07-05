@@ -39,3 +39,7 @@
 39) x^k can also be represented as (1+1+1....+1) * (1+1+1+1 ... +1) * ... (..) which means basically number of order tuples from each of the sets in the brackets, which can be calculated with a dp
 40) cache friendliness can make even 1e10 basic operations run really fast
 41) check connected component dp and the fact of setting default values initially and then updating them as u put stuff one by one.
+42) check complexity of stuff carefully. things might get amortized, there might be some other constraint that reduces the complexity.
+43) while pairing stuff, pairing via their ith bit is set or not strategy is cool.
+44) proving stuff on trees via HLD can be cool.
+45) if two stuff is happening simultaneously, maybe they can be separated?
