@@ -116,11 +116,8 @@ ll getMin(int node,int p){
 	return mn;*/
 	for(int j = 18;j>=0;j--){
 		if(node == -1)continue;
-
 		if(parent[j][node] == -1)continue;
-//		cout << node << " " << parent[j][node] << endl;  
 		if(dpt[parent[j][node]] <= dpt[p])continue;
-//		cout << node << endl;
 		mn = min(mn,dist2[j][node]);
 		node = parent[j][node];
 	}
