@@ -45,3 +45,5 @@
 45) if two stuff is happening simultaneously, maybe they can be separated?
 46) sometimes when coloring stuff, maybe we can color inside stuff in any way we want, and then fixing some other stuff so that this coloring becomes valid. So suppose in a rectangle, we want to color so that xor of values of rows and columns are given. so we randomly color rectangle R-1 x C-1 and fix rim. something like this strategy. Like, coloring inside of tree, and fixing color of leaves accordingly.
 47) in DnC dp, if we move the L,R of the cost function as and when needed, like mo's style, apparently its bounded by nlogn, which means amortized O(1). CF: 868F.
+48) dont set block sizes that exactly divide the variable on which sqrt decomp is being performed. wierd errors can take place that require more handling.
+49) apparently long double is 12 bytes, so use it when comparing in CHT as even long*long can overflow
