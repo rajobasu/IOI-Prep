@@ -47,3 +47,9 @@
 47) in DnC dp, if we move the L,R of the cost function as and when needed, like mo's style, apparently its bounded by nlogn, which means amortized O(1). CF: 868F.
 48) dont set block sizes that exactly divide the variable on which sqrt decomp is being performed. wierd errors can take place that require more handling.
 49) apparently long double is 12 bytes, so use it when comparing in CHT as even long*long can overflow
+50) sometimes, it can be useful to delete a certain vertex in a graph and count stuff in the rest of the graph, for example counting connected components maybe.
+51) in a tree, doing +1, -1 on nodes and then taking subtree sum to check "partial sums" can be a useful technique in several cases. 
+52) when considering DP of permutations or such, we can maybe process numbers in order , like 1 then 2 then... i then i+1. Also, we can do stuff about blocks in permutation by using partition functions.
+53) dividing into sets based on powers of 2 can be oof, in many cases. Like, even in range queries, we can try to divide it into 2 powers of 2, (for min max query maybe) both of range 2^k <= L, st 2^(k+1) > L (like we do in O(1) sparse table max).
+54) for grid problems and toggling, we can think about enemy DSU.. or maybe in other places as well. a cool idea.
+55) euler tours are fun in a graph. think about them. 
