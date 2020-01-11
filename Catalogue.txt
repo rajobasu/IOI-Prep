@@ -29,7 +29,7 @@
 29) TRY SQRT DECOMPOSITION EVERYWHERE.LITERALLY EVERYWHERE.
 30) greedily choosing numbers in array with atleast 1 separation can be seen as manipulating augmenting paths in a bipartite graphs, and can be maintained in a heap.
 31) In queries regarding ranges, we can maybe try to process the begining and ending as events while processing offline. 
-32) Constraint equations can be solved via bellman ford. 
+32) Constraint equations can be solved via bellman ford. u - v <= a implies an edge from V to U with wieght a.
 33) while doing treaps and lazy, note that its not exactly like segtree. so like the lazy tags might need to be pushed two steps sometimes to calculating the sum at a certain level, because here, we can recalculate stuff even though lower things have not been pushed due the the split and merge functions. 
 34) Exact K-edge shortest path can be solved using bellman ford. We just need to do it in a dp style.
 35) we can use the fact that in a tree number of vertices - number of edges = 1. Thus it can be extended to a forest as well. This can be useful in case we are keeping count of the number of trees somewhere. Also can be used to find the number of connected components.
@@ -53,3 +53,13 @@
 53) dividing into sets based on powers of 2 can be oof, in many cases. Like, even in range queries, we can try to divide it into 2 powers of 2, (for min max query maybe) both of range 2^k <= L, st 2^(k+1) > L (like we do in O(1) sparse table max).
 54) for grid problems and toggling, we can think about enemy DSU.. or maybe in other places as well. a cool idea.
 55) euler tours are fun in a graph. think about them. 
+56) we can set up root(n) checkpoints in some query update type problem, and then during queries, extend from each checkpoint. Like in the retroactive problem theorem.
+57) in tree problems, rerooting can be used, which is, shift the root to some other node by travelling thru some edge.
+58) DSU with rollbacks can be avoided by adding the extra edges and then doing a DFS.
+59) we can transform coordinates if necessary. Basically to shift from a pair of bases to another, we do 2 sweeplines from the direction perpendicular to either of the bases
+60) instead of doing everything online, we can do stuff offline with segtree + sweep. so 2D / pers can be avoided.
+61) doing stuff backwards is a NICE idea
+62) parallelelllll binaarryy searrcch is nice
+63) there were 2 probs were we could precompute in blocks and then compute in whole
+64) whenever edge wieghts are there, see if only MST is concerned.
+65) in euclidean MST, no node has degree more than 5
