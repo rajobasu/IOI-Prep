@@ -40,7 +40,7 @@
 40) cache friendliness can make even 1e10 basic operations run really fast
 41) check connected component dp and the fact of setting default values initially and then updating them as u put stuff one by one.
 42) check complexity of stuff carefully. things might get amortized, there might be some other constraint that reduces the complexity.
-43) while pairing stuff, pairing via their ith bit is set or not strategy is cool.
+43) while pairing stuff, pairing via their ith bit is set or not strategy is cool. Similarly while separatinh stuff,  separate via their ith bit.
 44) proving stuff on trees via HLD can be cool.
 45) if two stuff is happening simultaneously, maybe they can be separated?
 46) sometimes when coloring stuff, maybe we can color inside stuff in any way we want, and then fixing some other stuff so that this coloring becomes valid. So suppose in a rectangle, we want to color so that xor of values of rows and columns are given. so we randomly color rectangle R-1 x C-1 and fix rim. something like this strategy. Like, coloring inside of tree, and fixing color of leaves accordingly.
