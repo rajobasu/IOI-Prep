@@ -63,3 +63,6 @@
 63) there were 2 probs were we could precompute in blocks and then compute in whole
 64) whenever edge wieghts are there, see if only MST is concerned.
 65) in euclidean MST, no node has degree more than 5
+66) deque takes much more memory than vector :3 even more than vector[] + int[]
+67) Intersection of two cycle intervals whose sum of lengths is less than n, results in a single cycle interval. If the length if more than n, then this is not necessarily true. 
+68) "Rule of thumb": When the question is "count numbers satisfying some inequalities", sqrt-decomposition is usually the right way.
