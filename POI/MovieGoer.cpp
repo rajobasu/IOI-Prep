@@ -33,7 +33,7 @@ like GSS2 kindof
 using namespace std;
 
 const int MAXN = 1e6 + 5;
-
+// range max, range addition. 
 struct SegmentTree{
 	// range max/ point update
 	ll st[4*MAXN];
