@@ -41,8 +41,9 @@ inline __attribute__((always_inline)) void add(int ptr){
     }
 }
 inline __attribute__((always_inline)) void remove(int ptr){
-    if(!s2.empty() and s2.find(v[ptr]) != s2.end()){
-        s2.erase(s2.find(v[ptr]));
+    auto it2 = s2.find(v[ptr]);
+    if(!s2.empty() and it2 != s2.end()){
+        s2.erase(it)2;
     }else{
         sum -= v[ptr];
         s1.erase(s1.find(v[ptr]));
