@@ -93,13 +93,6 @@ class CHT{
         int lo = 0;
         int hi = (int)(dq.size())-1;
         ll best = -INF;
-        /*
-        for(auto e:dq){
-            best = max(best, eval(e,x));
-        }
-        return best;
-*/
-       // cout << "here" << endl;
         while(hi >= lo){
             int mid =(hi+lo)/2;
             best = max(best,eval(dq[hi],x));
@@ -149,42 +142,16 @@ int main(){
     cin >> n >> a >> b >> c;
     FOR(i,n)cin >> arr[i];
     precalc(n);
-   // cout << cost(1,1) << endl;
-   // cout << sum(0,1) << endl;
-    FOR(i,n){
-    //    cout << pref[i] << " " << pref_sq_arr[i] << " " << pref_two_at_a_time[i] << endl;
-    }
-
-
-
-    //ll dp[n];FOR(i,n)dp[i] = -INF;
     ll g;
     FOR(i,n){
         ll vc = a*pref_sq_arr[i]+ b*pref[i]+ c+ 2*a*pref_two_at_a_time[i];
         ll v = ds.query(pref[i]);
         g = a*pref_sq_arr[i] + b*pref[i] + c + 2*a*cost(0,i);
-        /*
-        FOR(j,i+1){
-            if(j == 0){
-               
-            }else{
-                ll val = -2*a*pref[i]*pref[j-1] -a*pref_sq_arr[j-1]  - b*pref[j-1]  +dp[j-1]  - 2*a*pref_two_at_a_time[j-1] +2*a*pref[j-1]*pref[j-1];
-                v = max(v,val);
-                //dp[i] = max(dp[i],a*(pref_sq_arr[i]-pref_sq_arr[j-1]) + b*sum(j,i) + c + 2*a*cost(j,i) + dp[j-1]);
-            } 
-        }
-        */
         g = max(g,v+vc);
         //cout << g << endl;
         ds.addLine(-2*a*pref[i],-a*pref_sq_arr[i]  - b*pref[i]  + g  - 2*a*pref_two_at_a_time[i] +2*a*pref[i]*pref[i]);
     }
-
-
-    FOR(i,n){
-    //    cout << dp[i] << " ";
-    }
     cout << g << endl;
-    //cout << endl;
     
 
     return 0;
