@@ -4,7 +4,6 @@ For every pair of (i,j), in candy 1 and candy2 segments i to j form a rectangle 
 Find largest (x+y), st (x,y) is covered by a rectangle of candy1 as well as candy2.
 To do this, do offline sweep over x, and using dynamic lazy segree+ binrsch for y..
 */
-
 #include <stdio.h>     
 #include <stdlib.h>    
 #include <iostream>
@@ -39,7 +38,7 @@ To do this, do offline sweep over x, and using dynamic lazy segree+ binrsch for 
 using namespace std;
  
 const int MAXN = 100*1000 + 5;
-const int MAX_VAL = 1e9;
+int MAX_VAL = 1e9;
 
 // ================================================
 // ============== Segtree Code ===============
@@ -56,15 +55,10 @@ struct Node{
 		lzd = 0;
 	}
 };
-Node buffer[(int)1e7];
-int PTR = 0;
-int get(){
-	return PTR++;
-}
 
-void expand(int &node){
-	if(node == -1)node = get();
-}
+
+Node buffer[(int)6e6];
+int PTR = 0;
 	
 void push(int node,int ss,int se){
 	buffer[node].data += buffer[node].lzd;
@@ -73,9 +67,11 @@ void push(int node,int ss,int se){
 		return;
 	}
 
-	expand(buffer[node].left);
-	expand(buffer[node].right);
+	if(buffer[node].left == -1)buffer[node].left = PTR++;
+	if(buffer[node].right == -1)buffer[node].right = PTR++;
+	
 	if(buffer[node].lzd == 0)return;
+
 	//cout << buffer[node].lzd << endl;
 	buffer[buffer[node].left].lzd += buffer[node].lzd;
 	buffer[buffer[node].right].lzd += buffer[node].lzd;
@@ -99,24 +95,35 @@ void update(int node,int ss,int se,int l,int r,int val){
 }
 
 int binary_search(int node1,int node2,int ss,int se){
-	//cout << "FIRST TIME? : " << node1 << " " << node2 << " " << ss << " " << se << " " << buffer[node1].data << " "<< buffer[node2].data << endl;
-	push(node1,ss,se);
-	push(node2,ss,se);
-	if(node1 == -1 or node2 == -1 or buffer[node1].data == 0 or buffer[node2].data == 0)return -1;
-	if(ss == se)return ss;
-	
-	//cout << "SECOND TIME? : " <<  node1 << " " << node2 << " " << ss << " " << se << " " << buffer[node1].data << " "<< buffer[node2].data << endl;
-	if(buffer[node1].right == -1 or buffer[node2].right == -1){
-		if(buffer[node1].data > 0 and buffer[node2].data > 0){
-			return se;
+	int lo = ss;
+	int hi = se;
+	push(node1,lo,hi);
+	push(node2,lo,hi);
+	//cout << buffer[node1].data << endl;
+	if(buffer[node1].data == 0 or buffer[node2].data == 0)return -1;
+	while(hi >= lo){
+		// the assumption is this range has data>0 for both trees
+		if(hi == lo)return lo;
+		int mid = (lo+hi)/2;
+		push(buffer[node1].left,lo,mid);
+		push(buffer[node1].right,mid+1,hi);
+
+		push(buffer[node2].left,lo,mid);
+		push(buffer[node2].right,mid+1,hi);
+		//cout << lo << " " << hi << " " << buffer[buffer[node1].right].data << " " << buffer[buffer[node2].right].data << endl;
+		if(buffer[buffer[node1].right].data > 0 and buffer[buffer[node2].right].data > 0){
+			lo = mid+1;
+			node1 = buffer[node1].right;
+			node2 = buffer[node2].right;
+		}else if(buffer[buffer[node1].left ].data > 0 and buffer[buffer[node2].left ].data > 0){
+			node1 = buffer[node1].left;
+			node2 = buffer[node2].left;
+			hi = mid;
 		}else{
 			return -1;
 		}
+	
 	}
-	int mid = (ss+se)/2;
-	int ans = binary_search(buffer[node1].right,buffer[node2].right,mid+1,se);
-	if(ans == -1)return binary_search(buffer[node1].left,buffer[node2].left,ss,mid);
-	return ans;
 }
 // ================================================
 // ================================================
@@ -134,7 +141,7 @@ struct Rect{
 	}
 };
 
-vv<Rect> formRects(int n,pair<char,int>* arr){
+void formRects(int n,pair<char,int>* arr,vv<Rect>& result){
 	int w[n];
 	int b[n];
 	w[0] = b[0] = 0;
@@ -146,7 +153,7 @@ vv<Rect> formRects(int n,pair<char,int>* arr){
 		if(arr[i].ff == 'W')w[i] += arr[i].ss;
 		else b[i] += arr[i].ss;
 	}
-	vv<Rect> result;
+	
 	FOR(i,n){
 		FOR(j,i+1){
 			int maxww = w[i] - (j == 0?0:w[j-1]);
@@ -163,7 +170,7 @@ vv<Rect> formRects(int n,pair<char,int>* arr){
 			result.pb(Rect(minww,maxww,minbb,maxbb));
 		}
 	}
-	return result;
+
 }
 
 
@@ -189,7 +196,19 @@ struct Event{
 	}
 };
 
+
+vi allVec_map;
+int index(int n){
+	return lower_bound(allVec_map.begin(), allVec_map.end(),n) - allVec_map.begin();
+}
+int rindex(int n){
+	return allVec_map[n];
+}
+
 int main(){
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+
 	int n;
 	cin >> n;
 	pair<char,int> num1[n];
@@ -201,67 +220,53 @@ int main(){
 	FOR(i,m)cin >> num2[i].ff >> num2[i].ss;
 
 	
-	auto list1 = formRects(n,num1);
-	auto list2 = formRects(m,num2);
+	vv<Rect> list1;formRects(n,num1,list1);
+	vv<Rect> list2;formRects(m,num2,list2);
+	
 	int best = 0;
-
+	MAX_VAL = 0;
 	vv<Event> allEvents;
+	set<int> allSet;
 	for(auto e : list1){
 		allEvents.pb(Event(e.x1,1,0,e.y1,e.y2));
 		allEvents.pb(Event(e.x2+1,0,0,e.y1,e.y2));
+		allSet.insert(e.y1);
+		allSet.insert(e.y2);
+		//MAX_VAL = max(MAX_VAL,max(e.y1,e.y2));
 	}
 	for(auto e : list2){
 		allEvents.pb(Event(e.x1,1,1,e.y1,e.y2));
 		allEvents.pb(Event(e.x2+1,0,1,e.y1,e.y2));
+		allSet.insert(e.y1);
+		allSet.insert(e.y2);
+		//MAX_VAL = max(MAX_VAL,max(e.y1,e.y2));
 	}
 	sort(allEvents.begin(), allEvents.end(), [&](Event e1, Event e2){
 		return e1.tm < e2.tm;
 	});
 
+	for(auto e : allSet)allVec_map.pb(e);
+	allSet.clear();
+	MAX_VAL =10+ allVec_map.size();
+
+	list1.clear();
+	list2.clear();
+
 	// lets process the events yay. 
 	int allN = allEvents.size();
-	int head1 = get();
-	int head2 = get();
+	int head1 = PTR++;
+	int head2 = PTR++;
 	int best2;
 	FOR(i,allN){
 		Event e = allEvents[i];
-	//	cout << e.tm << " " << e.type << " " << e.id << " " << e.a << " " << e.b << endl;
 		if(i > 0 and allEvents[i].tm > allEvents[i-1].tm){
-			// do some fun calculations stuff here.
 			int f = binary_search(head1,head2,0,MAX_VAL);
-			//cout << e.tm << " " << f << endl;
-			if(f >= 0){
-				best = max(best,e.tm-1+f);
-			}
-			//best = max(best,e.tm-1+ f);
+		//	cout << f << endl;
+			if(f >= 0)best = max(best,e.tm-1+rindex(f));
 		}
-		
-		// lets do the update;
-	//	cout << "FOR :  " << e.a << " " << e.b << endl;
-		if(!e.id){
-
-			update(head1,0,MAX_VAL,e.a,e.b,(e.type)*2-1);
-		}else{
-			update(head2,0,MAX_VAL,e.a,e.b,(e.type)*2-1);
-		}
-		
+		if(!e.id)update(head1,0,MAX_VAL,index(e.a),index(e.b),(e.type)*2-1);
+		else update(head2,0,MAX_VAL,index(e.a),index(e.b),(e.type)*2-1);
 	}
-
-	/*
-	for(auto e : list1){
-		for(auto f : list2){
-
-			int mxx = min(e.x2,f.x2);
-			if(mxx < max(e.x1,f.x1))continue;
-			int mxy = min(e.y2,f.y2);
-			if(mxy < max(e.y1,f.y1))continue;
-			if(mxx+mxy == 10){
-				//printR(e);
-				//printR(f);
-			}
-			best = max(best, mxx+mxy);
-		}
-	}*/
 	cout << best << endl;
 
 	return 0;
