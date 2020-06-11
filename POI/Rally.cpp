@@ -86,6 +86,7 @@ int rtopoID[MAXN];
 int deg[MAXN];
 bool vis[MAXN];
 int TP = 0;
+
 void dfs(int n){
 	// generate the topo sort
 	FOR(i,n)deg[i] = rg[i].size();
@@ -129,6 +130,7 @@ int main(){
 		for(auto e : g[rtopoID[i]])longest[i] = max(longest[i],1+longest[topoID[e]]);
 	FOR(i,n)
 		for(auto e : rg[rtopoID[i]])rlongest[i] = max(rlongest[i],1+rlongest[topoID[e]]);
+			
 	FOR(i,n){
 		if(i == 0)rlongestmax[i] = rlongest[i];
 		else rlongestmax[i] = max(rlongestmax[i-1],rlongest[i]);
@@ -144,7 +146,6 @@ int main(){
 		auto e = make_pair(topoID[x.ff],topoID[x.ss]);
 		if(e.ss-e.ff >= 2){
 			ranges[e.ff].pb({e.ss,rlongest[e.ff]+longest[e.ss]+1});
-			//segtree.update(0,0,n,e.ff+1,e.ss-1,rlongest[e.ff]+longest[e.ss]+1);
 		}
 	}
 	

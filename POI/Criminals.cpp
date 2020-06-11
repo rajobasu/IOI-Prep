@@ -131,11 +131,11 @@ int main(){
 	}
 
 	auto it = lower_bound(pos[0][sp].begin(), pos[0][sp].end() , lw);
-		while(it != pos[0][sp].end()){
-			if(*it > hi)break;
-			tmp2.pb(*it);
-			it++;
-		}
+	while(it != pos[0][sp].end()){
+		if(*it > hi)break;
+		tmp2.pb(*it);
+		it++;
+	}
 	
 	cout << tmp2.size() << endl;
 	for(auto x : tmp2){
