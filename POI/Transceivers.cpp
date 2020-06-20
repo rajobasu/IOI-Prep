@@ -40,8 +40,7 @@ const bool DEBUG = 0;
 struct SegmentTree{
 	
 	void push_down(int node,int ss,int se){
-		
-		firstTerm[node] += lz_firstTerm[node];
+   		firstTerm[node] += lz_firstTerm[node];
 		difference[node] += lz_difference[node];
 
 		int mid = (ss+se)/2;
@@ -59,39 +58,27 @@ struct SegmentTree{
 		ll y = len*(2*lz_firstTerm[node] + (len-1)*lz_difference[node])/2;
 		lz_firstTerm[node] = 0;
 		lz_difference[node] = 0;
-
 		st[node] += y;
-		//st[node] *= len;
-		//st[node] /= 2;
 	}
 	void update(int node,int ss,int se,int startPoint,ll s,ll a){
 		push_down(node,ss,se);
 		if(se < startPoint)return;
-		
 		if(ss >= startPoint){
 			lz_firstTerm[node] += s + (ss-startPoint)*a;
 			lz_difference[node] += a;
 			push_down(node,ss,se);
 			return;
 		}
-		//push_down(node,ss,se);
 		int mid = (ss+se)/2;
 		update(node*2+1,ss ,mid, startPoint,s,a);
 		update(node*2+2,mid+1,se,startPoint,s,a);
-		//firstTerm[node] = 0;
-		// difference[node] = 0;
 		st[node] = st[node*2+1] + st[node*2+2];
 	}
 
 	ll get(int node,int ss,int se,int l,int r){
 		push_down(node,ss,se);
-		//cout << ss << " " << se << firstTerm[node] << " " << difference[node] << endl;
 		if(l > se or r < ss)return 0;
 		if(l <= ss and se <= r){
-			if(DEBUG){
-				//
-				cout << ss << " " << se << " " << st[node] << " " << firstTerm[node] << " " << difference[node] << endl;
-			}
 			return st[node];
 			ll len = se-ss+1;
 			return len*(2*firstTerm[node] + (len-1)*difference[node])/2;
@@ -99,8 +86,6 @@ struct SegmentTree{
 		int mid = (ss+se)/2;
 		return get(node*2+1,ss,mid,l,r) + get(node*2+2,mid+1,se,l,r);
 	}
-
-
 } segtree;	
 
 
@@ -108,56 +93,11 @@ struct SegmentTree{
 
 
 void addAP(int x,int y,ll s,ll a){
-	if(DEBUG)cout << "=====================ADDING APs====================" << endl;
-	//cout << "ok" << endl;
-	if(x < 0){
-		//cout << x << " " << y << " " << s << " " << a << endl;
-		segtree.update(0,0,MAXN,0,s + (-x*a),a);
-	}else{
-		segtree.update(0,0,MAXN,x,s,a);
-	}
-	//cout << "why" << endl;
-	if(y+1 >= MAXN-2){
-	}else{
-		segtree.update(0,0,MAXN,y+1,-(s+a*(y+1-x)),-a);	
-	}
-	
+	if(x < 0)segtree.update(0,0,MAXN,0,s + (-x*a),a);
+	else segtree.update(0,0,MAXN,x,s,a);
+
+	if(y+1 < MAXN-2)segtree.update(0,0,MAXN,y+1,-(s+a*(y+1-x)),-a);
 }
-
-
-ll contrib[MAXN];
-void test(){
-	int n = 30;
-	FOR(i,n){
-		//if(i >)continue;
-		FOR(j,n){
-			//if(j < i)continue;
-			contrib[j] += max(0,1000-abs(i-j));
-		}
-	}
-	int sum = 0;
-	FOR(i,n)sum += contrib[i];
-	cout << sum << endl;
-
-	FOR(i,n){
-		int x = i;
-		int s = 1000;
-		int a = 1;
-		int lstPos = s/a;
-		addAP(x,x+lstPos,s,-a);
-		addAP(x-lstPos,x-1,s - lstPos*a,a);
-	}
-	int s2 = 0;
-	FOR(i,n)s2 += segtree.get(0,0,MAXN,i,i);
-	cout << s2 << endl;
-	cout << segtree.get(0,0,MAXN,0,1) << endl;
-	cout << segtree.get(0,0,MAXN,0,n-1) << endl;
-
-}
-
-
-
-
 
 ii all[MAXN];
 void solve(){
