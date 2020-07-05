@@ -88,7 +88,7 @@ int n;
 struct Event{
 	// =1 means growth_end(i) has been reached, and it wont grow anymore;
 	// =2 means decay has been started.
-	// type2 = ded.
+	// type3 = ded.
 	int type; 
 	int time;
 	int item;

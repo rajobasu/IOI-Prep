@@ -116,8 +116,10 @@ void dfs_euler(int node,int p){
 	FOR(i,g[node].size()){
 		int child = g[node][i];
 		if(child == p)continue;
-		if(i == 0)head[child] = head[node];
+		// head[node] = what is the headnode of the chain that I (I = 'node') belong to 
+		if(i == 0)head[child] = head[node];// means child is heavy
 		else head[child] = child;
+
 		dfs_euler(child,node);
 	}	
 }
@@ -169,10 +171,10 @@ void updateChains(int lower,int higher){
 	while(lower > -1){
 		int headOfCurrentChain = head[lower];
 		if(depth[headOfCurrentChain] <= depth[higher]){
-			segtree.update(in[lower],in[higher],1);
+			segtree.update(in[higher],in[lower],1);
 			break;
 		}else{
-			segtree.update(in[lower],in[headOfCurrentChain],1);
+			segtree.update(in[headOfCurrentChain],in[lower],1);
 			lower = parent[0][headOfCurrentChain];
 		}
 	}

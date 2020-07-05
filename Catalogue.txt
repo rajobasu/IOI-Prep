@@ -66,3 +66,4 @@
 66) deque takes much more memory than vector :3 even more than vector[] + int[]
 67) Intersection of two cycle intervals whose sum of lengths is less than n, results in a single cycle interval. If the length if more than n, then this is not necessarily true. 
 68) "Rule of thumb": When the question is "count numbers satisfying some inequalities", sqrt-decomposition is usually the right way.
+69) Think about DP stuff in Matrix forms, maybe that will help, especially when DP is combined with query, we can think about range matrix multiplication using segtree
